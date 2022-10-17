@@ -90,10 +90,10 @@ RUN mkdir /workdir/project && \
     echo "Zephyr Toolchain version: ${ZEPHYR_TOOLCHAIN_VERSION}" && \
     case $arch in \
         "amd64") \
-            ZEPHYR_TOOLCHAIN_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZEPHYR_TOOLCHAIN_VERSION}/zephyr-sdk-${ZEPHYR_TOOLCHAIN_VERSION}_linux-x86_64.tar.gz" \
+            ZEPHYR_TOOLCHAIN_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v$ZEPHYR_TOOLCHAIN_VERSION/zephyr-sdk-$ZEPHYR_TOOLCHAIN_VERSION_linux-x86_64.tar.gz" \
             ;; \
         "arm64") \
-            ZEPHYR_TOOLCHAIN_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZEPHYR_TOOLCHAIN_VERSION}/zephyr-sdk-${ZEPHYR_TOOLCHAIN_VERSION}_macos-aarch64.tar.gz" \
+            ZEPHYR_TOOLCHAIN_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v$ZEPHYR_TOOLCHAIN_VERSION/zephyr-sdk-$ZEPHYR_TOOLCHAIN_VERSION_macos-aarch64.tar.gz" \
             ;; \
         *) \
             echo "Unsupported target architecture: \"$arch\"" >&2 && \
@@ -101,7 +101,7 @@ RUN mkdir /workdir/project && \
     esac && \
     echo "ZEPHYR_TOOLCHAIN_URL=${ZEPHYR_TOOLCHAIN_URL}" && \
     wget -qO - "${ZEPHYR_TOOLCHAIN_URL}" | tar xz && \
-    mv /workdir/zephyr-sdk-${ZEPHYR_TOOLCHAIN_VERSION} /workdir/zephyr-sdk && cd /workdir/zephyr-sdk && yes | ./setup.sh
+    mv /workdir/zephyr-sdk-$ZEPHYR_TOOLCHAIN_VERSION /workdir/zephyr-sdk && cd /workdir/zephyr-sdk && yes | ./setup.sh
 
 # Download sdk-nrf and west dependencies to install pip requirements
 FROM base
